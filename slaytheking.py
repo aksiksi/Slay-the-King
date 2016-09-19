@@ -1,24 +1,31 @@
 ############################################################
-## This silly game is coded by Assil Ksiksi.              ## 
-## It is not complete yet.                                ##                       
+## This silly game is coded by Assil Ksiksi.              ##
+## It is not complete yet.                                ##
 ############################################################
 
+import sys
+import os
 from sys import exit
 from time import sleep
-from os import system
 from random import randrange, seed
+
+def clear_console():
+    if sys.platform in ["darwin", "linux2"]:
+        os.system("clear")
+    elif sys.platform == "win32":
+        os.system("cls")
 
 # A simple battle algorithm. Sadly, it took me over 45 minutes to get right..
 def battle(player_level, knight_number):
     # Define player and enemy stats based on passed variables
     knight_stats = [knight_number, knight_number * 30, knight_number * 4]
     player_stats = [player_level, player_level * 30, player_level * 4]
-    
-    print "\nBattle Mode -> Enemy: Tower Knight #%d\n" % knight_stats[0] 
-    
+
+    print "\nBattle Mode -> Enemy: Tower Knight #%d\n" % knight_stats[0]
+
     your_hp = player_stats[1] # Assign HP to a variable
     enemy_hp = knight_stats[1] # Assign HP to a variable
-    
+
     while your_hp > 0 and enemy_hp > 0: # Loop is broken once player or enemy gets to 0 HP.
         action = raw_input("What will you do? ")
         if action == "attack":
@@ -81,15 +88,15 @@ def battle(player_level, knight_number):
             exit(0)
         else:
             print "\nUnknown command dude.\n"
-    
+
     if your_hp == 0:
         print "You lost the battle! Game over. Boo-hoo."
         exit(0)
     else:
         print "Knight #%d has been crushed! Hooray!\n" % knight_stats[0]
-        
+
 def first_floor_right(): # A silly function to give player a "choice".
-    system("CLS")
+    clear_console()
     print "\nPrince: Let's head right then."
     cont()
     print "Cloverfield: Roger that, sir."
@@ -99,7 +106,7 @@ def first_floor_right(): # A silly function to give player a "choice".
     print "However, they are not scared because they have one goal: defeat the king."
     cont()
     print "Prince: There's a large door up ahead. It seems to be locked. What do we do? Open it or return?\n"
-    
+
     while True:
         answer = raw_input("> ")
         if answer == "open":
@@ -120,7 +127,7 @@ def cont(): # My way to deal with the "press enter to continue" problem. Should 
         print "\nPlease don't enter characters before hitting enter. Thank you."
     return None
 
-system("CLS") # This simply clears the cmd screen.
+clear_console() # This simply clears the cmd screen.
 #battle(100,100)
 
 # Intro
@@ -136,7 +143,7 @@ cont()
 print "Good luck, young prince. The road ahead of you is long and perilous...."
 cont()
 
-system("CLS")
+clear_console()
 
 # First dialogue, approach to staircase
 print "\nA sword and shield lay at the foot of the prince's bed. He picks them up, and heads towards the door. He knows that there is no turning back...."
@@ -152,7 +159,7 @@ cont()
 print "Why is the prince cautious, you say? Long story short, he's under \"room-arrest\". No kidding. The reason? It's bad."
 cont()
 
-system("CLS")
+clear_console()
 
 # Prelude to fight with #10
 print "\nCloverfield: Sir, there seems to be a knight in the middle of the staircase. I doubt he'll let us pass, without a fight of course."
@@ -164,7 +171,7 @@ cont()
 print "Prince: He did? Well, he'll pay for that later. Right now, you're going to be punished."
 cont()
 
-system("CLS")
+clear_console()
 
 # Battle #10, intro to battle system
 print "\nWelcome to Battle Mode! In this mode, you will be able to execute attacks, heal yourself, or defend against an approaching attack."
@@ -179,9 +186,9 @@ print "Death in a battle will result in a game over, which is why you should be 
 cont()
 print "Enjoy the battle!"
 
-system("CLS")
+clear_console()
 battle(1,1)
-system("CLS")
+clear_console()
 
 # After battle is won
 print "Prince: We won the battle. Only 6 knights to go, it seems."
@@ -200,7 +207,7 @@ while True:
         break
     else:
         print "\nNo such thing exists in this context. Try again please\n."
-    
+
 print "\nPrince: Left it is then. Let us make us make haste, Cloverfield."
 cont()
 print "The duo walk for a while, until they reach a passageway blocked by a sturdy Tower Knight. He is #4, obviously."
@@ -214,4 +221,4 @@ cont()
 print "Prince: Thanks.."
 cont()
 
-system("CLS")
+clear_console()
